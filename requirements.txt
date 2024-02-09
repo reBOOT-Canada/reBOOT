@@ -33,5 +33,4 @@ simplejson==3.17.6
 # https://pypi.org/project/whitenoise/6.0.0/
 # whitenoise==6.0.0
 whitenoise==5.0.1
-# https://pypi.org/project/xhtml2pdf/0.2.13/
-xhtml2pdf==0.2.13
+xhtml2pdf~=0.2.15
