@@ -13,6 +13,8 @@ from app.models.donor import Donor
 from app.models.item import Item
 from app.models.item_device import ItemDevice
 
+def stub_get_response(request):
+    return None
 
 class DonorAdminTestCase(TestCase):
     def setUp(self) -> None:
@@ -47,9 +49,9 @@ class DonorAdminTestCase(TestCase):
     def test_destroy_donor(self) -> None:
         request = self.request_factory.delete(path="")
         request.user = self.user
-        sessionMiddleware = SessionMiddleware()
+        sessionMiddleware = SessionMiddleware(get_response=stub_get_response)
         sessionMiddleware.process_request(request=request)
-        messageMiddleware = MessageMiddleware()
+        messageMiddleware = MessageMiddleware(get_response=stub_get_response)
         messageMiddleware.process_request(request=request)
         donors = Donor.objects.all()
 
@@ -153,9 +155,9 @@ class DonationAdminTestCase(TestCase):
 
     def test_mark_items_verified(self) -> None:
         request = self.request_factory.post(path="")
-        sessionMiddleware = SessionMiddleware()
+        sessionMiddleware = SessionMiddleware(get_response=stub_get_response)
         sessionMiddleware.process_request(request=request)
-        messageMiddleware = MessageMiddleware()
+        messageMiddleware = MessageMiddleware(get_response=stub_get_response)
         messageMiddleware.process_request(request=request)
         donations = Donation.objects.all()
 
@@ -167,9 +169,9 @@ class DonationAdminTestCase(TestCase):
 
     def test_mark_items_unverified(self) -> None:
         request = self.request_factory.post(path="")
-        sessionMiddleware = SessionMiddleware()
+        sessionMiddleware = SessionMiddleware(get_response=stub_get_response)
         sessionMiddleware.process_request(request=request)
-        messageMiddleware = MessageMiddleware()
+        messageMiddleware = MessageMiddleware(get_response=stub_get_response)
         messageMiddleware.process_request(request=request)
         donations = Donation.objects.all()
 
@@ -208,9 +210,9 @@ class DonationAdminTestCase(TestCase):
     def test_destroy_donation(self) -> None:
         request = self.request_factory.delete(path="")
         request.user = self.user
-        sessionMiddleware = SessionMiddleware()
+        sessionMiddleware = SessionMiddleware(get_response=stub_get_response)
         sessionMiddleware.process_request(request=request)
-        messageMiddleware = MessageMiddleware()
+        messageMiddleware = MessageMiddleware(get_response=stub_get_response)
         messageMiddleware.process_request(request=request)
         donations = Donation.objects.all()
 
@@ -233,9 +235,9 @@ class DonationAdminTestCase(TestCase):
         request = self.request_factory.post(
             path="", data={"_generate_receipt": ""})
         request.user = self.user
-        sessionMiddleware = SessionMiddleware()
+        sessionMiddleware = SessionMiddleware(get_response=stub_get_response)
         sessionMiddleware.process_request(request=request)
-        messageMiddleware = MessageMiddleware()
+        messageMiddleware = MessageMiddleware(get_response=stub_get_response)
         messageMiddleware.process_request(request=request)
 
         response = self.donation_admin.response_change(
@@ -247,9 +249,9 @@ class DonationAdminTestCase(TestCase):
         request = self.request_factory.post(
             path="", data={"_mark_items_verified": ""})
         request.user = self.user
-        sessionMiddleware = SessionMiddleware()
+        sessionMiddleware = SessionMiddleware(get_response=stub_get_response)
         sessionMiddleware.process_request(request=request)
-        messageMiddleware = MessageMiddleware()
+        messageMiddleware = MessageMiddleware(get_response=stub_get_response)
         messageMiddleware.process_request(request=request)
 
         response = self.donation_admin.response_change(
@@ -324,9 +326,9 @@ class ItemAdminTestCase(TestCase):
     def test_mark_pledged(self) -> None:
         request = self.request_factory.post(path="")
         request.user = self.user
-        sessionMiddleware = SessionMiddleware()
+        sessionMiddleware = SessionMiddleware(get_response=stub_get_response)
         sessionMiddleware.process_request(request=request)
-        messageMiddleware = MessageMiddleware()
+        messageMiddleware = MessageMiddleware(get_response=stub_get_response)
         messageMiddleware.process_request(request=request)
         queryset = Item.objects.all()
 
@@ -339,9 +341,9 @@ class ItemAdminTestCase(TestCase):
     def test_destroy_item(self) -> None:
         request = self.request_factory.delete(path="")
         request.user = self.user
-        sessionMiddleware = SessionMiddleware()
+        sessionMiddleware = SessionMiddleware(get_response=stub_get_response)
         sessionMiddleware.process_request(request=request)
-        messageMiddleware = MessageMiddleware()
+        messageMiddleware = MessageMiddleware(get_response=stub_get_response)
         messageMiddleware.process_request(request=request)
         items = Item.objects.all()
 
