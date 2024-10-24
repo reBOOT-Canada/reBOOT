@@ -24,3 +24,9 @@ else:
         'ca_certs': 'dev/ssl/cert/ca_certificate.pem',
         'cert_reqs': ssl.CERT_REQUIRED
     }
+
+if config("REDIS_URL", default=False):
+    # Redis is a pass-through with no real data
+    redis_backend_use_ssl = {
+        'ssl_cert_reqs': ssl.CERT_NONE
+    }
