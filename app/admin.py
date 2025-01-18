@@ -346,7 +346,8 @@ class ItemAdmin(ResourceAdmin):
     search_fields = ('device__model',
                      'device__make',
                      'donation__tax_receipt_no',
-                     'donation__donor__donor_name')
+                     'donation__donor__donor_name',
+                     'serial_number')
 
     actions = ('mark_verified', 'mark_unverified', 'mark_pledged',
                'mark_received', 'mark_tested', 'mark_refurbished', 'mark_sold',
