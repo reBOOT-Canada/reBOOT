@@ -1,15 +1,15 @@
 from django.contrib.admin import SimpleListFilter
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy
 
 
 class DonorBusinessFilter(SimpleListFilter):
-    title = _('Donor Type')
+    title = gettext_lazy('Donor Type')
     parameter_name = 'donor_type'
 
     def lookups(self, request, model_admin):
         return (
-            ('1', _('Business')),
-            ('0', _('Individual'))
+            ('1', gettext_lazy('Business')),
+            ('0', gettext_lazy('Individual'))
         )
 
     def queryset(self, request, queryset):

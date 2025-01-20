@@ -1,10 +1,10 @@
 from django.contrib.admin import SimpleListFilter
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy
 from app.enums import DonationStatusEnum
 
 
 class DonationStatusFilter(SimpleListFilter):
-    title = _('Status')
+    title = gettext_lazy('Status')
     parameter_name = 'status'
 
     def lookups(self, request, model_admin):

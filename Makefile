@@ -93,7 +93,7 @@ codespace:
 
 .PHONY: test
 test:
-	coverage run --source=./app ./manage.py test
+	PYTHONWARNINGS=always coverage run --source=./app ./manage.py test
 
 .PHONY: coverage
 coverage:
