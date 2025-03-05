@@ -4,6 +4,7 @@ from xhtml2pdf import pisa
 from django.http import HttpResponse
 from django.template.loader import get_template
 from django.utils import timezone
+from urllib.parse import quote
 
 
 def render_to_pdf(template_src, d, context_dict={}):
@@ -14,8 +15,11 @@ def render_to_pdf(template_src, d, context_dict={}):
     if not pdf.err:
         response = HttpResponse(
             result.getvalue(), content_type='application/pdf')
+        raw_filename = f"{d.pk} {d.donor.donor_name}.pdf"
+        safe_filename = quote(raw_filename)
         response['Content-Disposition'] = (
-            f'attachment; filename={d.pk} {d.donor.donor_name}.pdf')
+            f'attachment; filename="{raw_filename}"; filename*=UTF-8\'\'{safe_filename}'
+        )
         return response
     return None
 
