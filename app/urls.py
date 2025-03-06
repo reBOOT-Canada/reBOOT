@@ -2,19 +2,9 @@
 reboot URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/1.11/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  url(r'^$', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  url(r'^$', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.conf.urls import url, include
-    2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
+    https://docs.djangoproject.com/en/3.2/topics/http/urls/
 """
-from django.conf.urls import url
+from django.urls import re_path
 from django.contrib import admin
 
 from app.views import api_views, data_view, views
@@ -22,28 +12,28 @@ from app.views import api_views, data_view, views
 admin.autodiscover()
 
 urlpatterns = [
-    url(r'^', admin.site.urls),
-    url(r'^analytics$', views.get_analytics, name='get_analytics'),
-    url(r'^upload/csv$', views.import_csv, name='import_csv'),
-    url(r'^upload/poll_state$', views.poll_state, name='poll_state'),
-    url(r'^download/csv$', views.export_csv, name='export_csv'),
-    url(r'^download/pdf$', views.download_receipt, name='download_receipt'),
-    url(r'^download$', views.download_file, name='download_file'),
-    url(r'^error$', views.error, name='error'),
+    re_path(r'^', admin.site.urls),
+    re_path(r'^analytics$', views.get_analytics, name='get_analytics'),
+    re_path(r'^upload/csv$', views.import_csv, name='import_csv'),
+    re_path(r'^upload/poll_state$', views.poll_state, name='poll_state'),
+    re_path(r'^download/csv$', views.export_csv, name='export_csv'),
+    re_path(r'^download/pdf$', views.download_receipt, name='download_receipt'),
+    re_path(r'^download$', views.download_file, name='download_file'),
+    re_path(r'^error$', views.error, name='error'),
 ]
 
 # API urlpatterns
 urlpatterns += [
-    url(r'^api/autocomplete_name$', api_views.autocomplete_name),
-    url(r'^api/donor_info_auto_complete$', api_views.donor_info_auto_complete),
-    url(r'^api/device_info_auto_complete$',
+    re_path(r'^api/autocomplete_name$', api_views.autocomplete_name),
+    re_path(r'^api/donor_info_auto_complete$', api_views.donor_info_auto_complete),
+    re_path(r'^api/device_info_auto_complete$',
         api_views.device_info_auto_complete),
-    url(r'^api/related_donations$', api_views.related_donations),
-    url(r'^api/related_items$', api_views.related_items),
-    url(r'^api/quantity$', data_view.aggregate_quantity,
+    re_path(r'^api/related_donations$', api_views.related_donations),
+    re_path(r'^api/related_items$', api_views.related_items),
+    re_path(r'^api/quantity$', data_view.aggregate_quantity,
         name='aggregate_quantity'),
-    url(r'^api/value$', data_view.aggregate_value, name='aggregate_value'),
-    url(r'^api/status$', data_view.aggregate_status, name='aggregate_status'),
-    url(r'^api/location$', data_view.aggregate_location,
+    re_path(r'^api/value$', data_view.aggregate_value, name='aggregate_value'),
+    re_path(r'^api/status$', data_view.aggregate_status, name='aggregate_status'),
+    re_path(r'^api/location$', data_view.aggregate_location,
         name='aggregate_location'),
 ]
