@@ -1,3 +1,13 @@
+> [!NOTE]
+> **This project is archived and no longer maintained.**
+> reBOOT ran from October 12, 2017 until it was retired on November 14, 2026.
+> Thank you to everyone at Code the Change UBC and reBOOT Canada who built and used it.
+> Looking for what's next? Check out [rebootcanada.ca](https://www.rebootcanada.ca/) and [givvu.app](https://givvu.app/).
+> 
+
+<br/>
+<br/>
+
 <h1 align="center">
   reBOOT
 </h1>
